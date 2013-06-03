@@ -1,6 +1,7 @@
 // Synchronous-looking sleep
 
-// `run` is a top level
+// `run` is a top level function that handles
+// 
 function run(genfun){
   var gen = genfun()
   function next(){
