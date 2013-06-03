@@ -1,3 +1,5 @@
+// Experimenting with simple iteration.
+
 // A generator that returns the set of natural numbers
 function* naturalNumbers(){
   var n = 1
