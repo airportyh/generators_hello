@@ -1,6 +1,8 @@
 Experiments with the new Generators in Harmony
 ==============================================
 
+Some experiments with [harmony generators](http://wiki.ecmascript.org/doku.php?id=harmony:generator_expressions).
+
 ## Run with Node
 
 Install version 0.11.2 version of Node or higher, with [nvm](https://github.com/creationix/nvm) you can do
