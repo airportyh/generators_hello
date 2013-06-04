@@ -1,4 +1,5 @@
-// This run function will correctly handle
+// This run function will correctly handle continouables
+// that proxy to api's that have the node style of cps api
 //
 function run(genfun){
   var gen = genfun()
