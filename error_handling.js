@@ -37,6 +37,7 @@ function run(genfun){
       res = gen.send.call(gen, answer)
     }
     if (!res.done){
+      // recursive call to continues the loop
       res.value(next)
     }
   }
