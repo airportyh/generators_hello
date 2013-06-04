@@ -13,10 +13,18 @@ function *take(gen, n){
   }
 }
 
+function isGenerator(fun){
+  return fun.constructor.name === 'GeneratorFunction'
+}
+
 function each(gen, fun){
   var res
   while(!(res = gen.next()).done){
-    fun(res.value)
+    if (isGenerator(fun)){
+      run(fun)
+    }else{
+      fun(res.value)
+    }
   }
 }
 
@@ -37,7 +45,7 @@ function sleep(ms){
     setTimeout(callback, ms)
   }
 }
-
+/*
 // This is an example of what you **can't** do.
 run(function *(){
   each(take(naturalNumbers(), 10), function(n){
@@ -50,5 +58,13 @@ run(function *(){
   })
   console.log('Happy New Year!')
 })
+*/
 
 
+run(function *(){
+  each(take(naturalNumbers(), 10), function*(n){
+    yield sleep(1000)
+    console.log(n)
+  })
+  console.log('Happy New Year!')
+})

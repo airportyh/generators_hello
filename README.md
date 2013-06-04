@@ -16,3 +16,7 @@ to install node. And then to run make sure you include the `--harmony` flag. For
 ## Run with Chrome Canary
 
 Install [Chrome Canary](https://www.google.com/intl/en/chrome/browser/canary.html). Open `iteration.html` in Chrome Canary.
+
+Next serve the file via http using something like 
+
+    python -m SimpleHTTPServer
