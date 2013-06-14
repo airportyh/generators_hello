@@ -1,4 +1,4 @@
-var gen = require('./gen');
+var gen = require('../gen');
 var fs = require('fs');
 var http = require('http');
 var markdown = require('marked');
