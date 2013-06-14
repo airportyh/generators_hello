@@ -1,4 +1,4 @@
-function xhr(url){
+function ajax(url){
   return function(callback){
     var xhr = new XMLHttpRequest
     xhr.open('GET', url)
@@ -13,8 +13,8 @@ function xhr(url){
 
 function run(genfun){
   var gen = genfun()
-  function next(){
-    var res = gen.send.apply(gen, arguments)
+  function next(value){
+    var res = gen.send(value)
     if (!res.done){
       res.value(next)
     }
@@ -23,7 +23,6 @@ function run(genfun){
 }
 
 run(function *(){
-  console.log('Getting README.md')
-  var code = yield xhr('README.md')
-  document.body.innerHTML = markdown.toHTML(code)
+  var contents = yield xhr('README.md')
+  document.body.innerHTML = markdown.toHTML(contents)
 })

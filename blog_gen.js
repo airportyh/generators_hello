@@ -1,5 +1,5 @@
 var gen = require('./gen');
-var fs = gen.wrapModule(require('fs'));
+var fs = require('fs');
 var http = require('http');
 var markdown = require('marked');
 
@@ -11,8 +11,8 @@ var server = http.createServer(function(req, resp){
   resp.writeHead(200, {'Content-Type': 'text/html'});
   gen.run(function*(){
     try{
-      var tpContent = yield fs.readFile('blog_post_template.html');
-      var mdContent = yield fs.readFile('my_blog_post.md');
+      var tpContent = yield readFile('blog_post_template.html');
+      var mdContent = yield readFile('my_blog_post.md');
       resp.end(template(tpContent, markdown(String(mdContent))));
     }catch(e){
       resp.end(e.message);
@@ -23,3 +23,9 @@ var server = http.createServer(function(req, resp){
 server.listen(8000, '127.0.0.1');
 
 console.log('Blog started on port', 8000);
+
+function readFile(filepath){
+  return function(callback){
+    fs.readFile(filepath, callback)
+  }
+}

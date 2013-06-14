@@ -3,24 +3,31 @@ exports.run = run
 // if the continueable returns an error using Node's convention of
 // first argument is an error
 function run(genfun){
+  // instantiate the generator object
   var gen = genfun()
-  // This is the async loop pattern <http://tobyho.com/2011/11/03/delaying-repeatedly/>
+  // This is the async loop pattern
   function next(err, answer){
     var res
     if (err){
-      // if error, we want to throw it so it's catchable
-      // on the outside
-      return gen.throw.apply(gen, arguments)
+      // if err, throw it into the wormhole
+      return gen.throw(err)
     }else{
-      // if no error, send the answer back to the outside
-      res = gen.send.call(gen, answer)
+      // if good value, send it
+      res = gen.send(answer)
     }
     if (!res.done){
-      // recursive call to continues the loop
+      // if we are not at the end
+      // we have an async request to
+      // fulfill, we do this by calling 
+      // `value` as a function
+      // and passing it a callback
+      // that receives err, answer
+      // for which we'll just use `next()`
       res.value(next)
     }
   }
-  next() // start the loop
+  // Kick off the async loop
+  next()
 }
 
 exports.wrap = wrap
