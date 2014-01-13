@@ -14,7 +14,7 @@ function ajax(url){
 function run(genfun){
   var gen = genfun()
   function next(value){
-    var res = gen.send(value)
+    var res = gen.next(value)
     if (!res.done){
       res.value(next)
     }

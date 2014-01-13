@@ -12,7 +12,7 @@ function run(genfun){
       return gen.throw.apply(gen, arguments)
     }else{
       // if no error, send the answer back to the outside
-      res = gen.send.call(gen, answer)
+      res = gen.next.call(gen, answer)
     }
     if (!res.done){
       // recursive call to continues the loop
