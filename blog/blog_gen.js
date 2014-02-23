@@ -40,7 +40,7 @@ function run(genfun){
       return gen.throw(err)
     }else{
       // if good value, send it
-      res = gen.send(answer)
+      res = gen.next(answer)
     }
     if (!res.done){
       // if we are not at the end
